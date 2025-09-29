@@ -6,32 +6,27 @@
 */
 
 import java.util.Scanner;
+import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         // variable declaration
         final double tabletMg = 250.0;
         char letter;
-        String code;
-        double  weightKg,
-                heightM,
-                bmi,
-                dosage,
-                degrees,
-                radians,
-                cosValue,
-                sinValue;
+        String  code, firstName;
+        double  weightKg, heightM, bmi,
+                dosage, degrees, radians, cosValue, sinValue;
 
         // input scanner to read user's input
-        Scanner input1 = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         System.out.println("Enter service code P/L/T/C");
         // storing user's input that's always uppercase
-        letter = input1.next().toUpperCase().charAt(0);
+        letter = input.next().toUpperCase().charAt(0);
 
         code = switch (letter){
-            case 'P' -> "Pharmacy Desk";
-            case 'L' -> "Lab Desk";
-            case 'T' -> "Triage Desk";
-            case 'C' -> "Counseling Desk";
+            case 'P' -> "Pharmacy";
+            case 'L' -> "Lab";
+            case 'T' -> "Triage";
+            case 'C' -> "Counseling";
             default -> "Invalid service code";
         };
         // displaying the value returned from the switch
@@ -39,18 +34,18 @@ public class Main {
 
         // BMI quick calc
         // user input collection and storing
-        Scanner weightInput = new Scanner(System.in);
         System.out.println("Please, enter your weight (kg)");
-        weightKg = weightInput.nextDouble();
-
-        Scanner heightInput = new Scanner(System.in);
+        weightKg = input.nextDouble();
         System.out.println("Please, enter your height (m)");
-        heightM = heightInput.nextDouble();
+        heightM = input.nextDouble();
 
         // rounding BMI
         bmi = weightKg/(heightM * heightM);
         bmi = Math.round(bmi * 10)/10.0;
-        System.out.println("BMI: " + bmi);
+        // System.out.println("BMI: " + bmi);
+
+        /*
+        Commenting the tasks that don't impact the outcome
 
         // checking bmi category
         String bmiCategory;
@@ -64,22 +59,19 @@ public class Main {
         } else {
             bmiCategory = "Obese";
         }
-
-        System.out.println("Category: " + bmiCategory);
+        //System.out.println("Category: " + bmiCategory);
 
         // dosage round-up
-        Scanner dosageInput = new Scanner(System.in);
-        System.out.println("Please, enter the require dosage (mg)");
-        dosage = dosageInput.nextDouble();
+        System.out.println("Please, enter the required dosage (mg)");
+        dosage = input.nextDouble();
 
-        // converting and printing number of tablets as an int
+        // converting and printing number of tablets as an integer
         int numTablets = (int) Math.ceil(dosage / tabletMg);
         System.out.println("Number of tablets: " + numTablets);
 
         // Simple trig helper
-        Scanner angleInput = new Scanner(System.in);
         System.out.println("Please, enter an angle in degrees");
-        degrees = angleInput.nextDouble();
+        degrees = input.nextDouble();
 
         // java toRadians method to compute radian
         radians = Math.toRadians(degrees);
@@ -95,10 +87,58 @@ public class Main {
         System.out.println("Cos: " + cosValue);
         System.out.println("Sin: " + sinValue);
 
+        */
+
+        // ID sanity check
+        Random randomChar = new Random();
+
+        // generating random character value
+        int charValue = randomChar.nextInt(26) + 65;
+        // casting random value into character data type
+        char charUpperCase = (char) charValue;
+
+        // generating random 4 random numbers
+        int randomNum1 = 3 + randomChar.nextInt(7);
+        int randomNum2 = 3 + randomChar.nextInt(7);
+        int randomNum3 = 3 + randomChar.nextInt(7);
+        int randomNum4 = 3 + randomChar.nextInt(7);
+
+        // concatenating numbers and characters
+        String codeGeneration = "" + charUpperCase + randomNum1 + randomNum2+ randomNum3 + randomNum4;
+
+        // checking whether the code generation meets the requirements
+        if (codeGeneration.length() != 5) {
+            System.out.println("Invalid length!");
+        } else if (!Character.isLetter(codeGeneration.charAt(0))) {
+            System.out.println("Invalid: first char must be a letter.");
+        } else if (!Character.isDigit(codeGeneration.charAt(1)) || !Character.isDigit(codeGeneration.charAt(2))
+                    || !Character.isDigit(codeGeneration.charAt(3)) || !Character.isDigit(codeGeneration.charAt(4))) {
+            System.out.println("Invalid: last 4 must be digits");
+        } else {
+            System.out.println("ID OK");
+        }
+
+        // Secure
+        System.out.println("Please, enter your firstname");
+        firstName = input.nextLine();
+
+        // uppercase the first letter uppercase
+        char fLetter = Character.toUpperCase(firstName.charAt(0));
+        // shifting forward by 2 positions
+        char shift = (char) ('A' + (fLetter - 'A' + 2) % 26);
+        // last two characters of ID
+        String lastChar = codeGeneration.substring(codeGeneration.length() - 2);
+        // rounding bmi
+        int roundedBMI = (int) Math.round(bmi);
+
+        // concatenating the final code
+        String finalCode = shift + lastChar + "-" + roundedBMI;
+        //System.out.println(finalCode);
+
+        // Program summary display
+        System.out.println(code.toUpperCase() + " | ID: " + codeGeneration + " | Code: " + finalCode);
+
         // closing scanners
-        weightInput.close();
-        heightInput.close();
-        dosageInput.close();
-        angleInput.close();
+        input.close();
     }
 }
