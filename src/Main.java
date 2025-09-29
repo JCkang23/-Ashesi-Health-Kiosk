@@ -10,11 +10,11 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         // variable declaration
-        final double tabletMg = 250.0;
+        // final double tabletMg = 250.0;
         char letter;
         String  code, firstName;
-        double  weightKg, heightM, bmi,
-                dosage, degrees, radians, cosValue, sinValue;
+        double  weightKg, heightM, bmi;
+        // double dosage, degrees, radians, cosValue, sinValue;
 
         // input scanner to read user's input
         Scanner input = new Scanner(System.in);
