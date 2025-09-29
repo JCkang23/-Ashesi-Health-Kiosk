@@ -1,7 +1,16 @@
 /*  Josue Cikanga - 38452028
     September 28, 2025
 
-    Tasks
+    Description
+
+    Building a simple categorization program that takes user input,
+        processes the different tasks and display accordingly.
+            Program Elements
+
+            - Casting methods
+            - Character manipulation
+            - Different java methods for computation
+            - Condition check with If & Switch statements
 
 */
 
@@ -42,7 +51,6 @@ public class Main {
         // rounding BMI
         bmi = weightKg/(heightM * heightM);
         bmi = Math.round(bmi * 10)/10.0;
-        // System.out.println("BMI: " + bmi);
 
         /*
         Commenting the tasks that don't impact the outcome
@@ -138,7 +146,7 @@ public class Main {
         // Program summary display
         System.out.println(code.toUpperCase() + " | ID: " + codeGeneration + " | Code: " + finalCode);
 
-        // closing scanners
+        // closing scanner
         input.close();
     }
 }
